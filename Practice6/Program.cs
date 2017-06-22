@@ -19,20 +19,34 @@ namespace Practice6
         /// 
         static void Main(string[] args)
         {
-            int a1, a2, a3, N;
+            double a1, a2, a3;
+            int N;
             Console.WriteLine("а[к] = (а[к–1] + а[к-2]) / 2 – а[к–3]");
 
             Console.WriteLine("a1 =");
-            a1 = int.Parse(Console.ReadLine());
+            a1 = double.Parse(Console.ReadLine());
 
             Console.WriteLine("a2 =");
-            a2 = int.Parse(Console.ReadLine());
+            a2 = double.Parse(Console.ReadLine());
 
             Console.WriteLine("a3 =");
-            a3 = int.Parse(Console.ReadLine());
+            a3 = double.Parse(Console.ReadLine());
 
             Console.WriteLine("N =");
             N = int.Parse(Console.ReadLine());
+
+            double[] a = new double[N + 3];
+            a[0] = a1;
+            a[1] = a2;
+            a[2] = a3;
+
+            for (int i = 3; i < N + 3; i++)
+                a[i] = (a[i - 1] + a[i - 2]) / 2 - a[i - 3];
+
+            for (int i = 3; i < N + 3; i++)
+                Console.Write("{0, 12:F2}", a[i]);
+
+            
         }
     }
 }
