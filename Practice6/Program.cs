@@ -36,6 +36,7 @@ namespace Practice6
             N = int.Parse(Console.ReadLine());
 
             double[] a = new double[N + 3];
+            double[] b = new double[1];
             a[0] = a1;
             a[1] = a2;
             a[2] = a3;
@@ -43,10 +44,46 @@ namespace Practice6
             for (int i = 3; i < N + 3; i++)
                 a[i] = (a[i - 1] + a[i - 2]) / 2 - a[i - 3];
 
-            for (int i = 3; i < N + 3; i++)
+            Console.WriteLine("Последовательность:");
+            for (int i = 0; i < N + 3; i++)
                 Console.Write("{0, 12:F2}", a[i]);
+            Console.WriteLine("");
+            Console.WriteLine("Длина последовательности: {0}", N + 3);
 
             
+            int l = 0, r = 0, j = 0;
+            b[j] = a[0];
+
+            for (int i = 0; i < N + 2; i++)
+                if (a[i] < a[i + 1])                            //Нашли участок возрастания
+                {
+                    l = i;                                      // Отрезок возрастания задаётся
+                                                                // l - левая граница, r - правая граница
+                    for (r = i + 1; a[r] > a[r - 1]; r++) ;     // Ищем правую границу
+                    i = r;                                      // Сдвигаем указатель
+                    r--;                                        // Уточняем границу (пример: 2 3 1, После прохода, указатель остаётся на 1, надо сдвинуть на элемент влево
+
+                    if (b[j] < a[r])                            // Сравниваем с последней сохранённой последовательностью
+                    {
+                        b = new double[r - l + 1];
+                        for (j = 0; j <= r - l; j++)
+                            b[j] = a[l + j];
+                        j = b.Length - 1;
+                    }
+
+                }
+                else
+                    continue;
+
+            Console.WriteLine("");
+            Console.WriteLine("Максимально возрастающая подпоследовательность:");
+            for (int i = 0; i < b.Length; i++)
+                Console.Write("{0, 12:F2}", b[i]);
+            Console.WriteLine("");
+            Console.WriteLine("Длина подпоследовательности: {0}", b.Length);
+
+            Console.WriteLine("Максимальный элемент: {0}", b.Last());
+
         }
     }
 }
