@@ -17,6 +17,20 @@ namespace Practice6
         /// Напечатать последовательность, длину и последний элемент максимальной возрастающей подпоследовательности. 
         /// </summary>
         /// 
+        //Сделать рекурсию
+
+        //Строим N новых элементов
+        static double AiFunc(double a1, double a2, double a3, int N)
+        {
+            double a4 = 0;
+            if (N != 0)
+            {
+                a4 = (a3 + a2) / 2 - a1;
+                Console.Write(a4 + " ");
+                AiFunc(a2, a3, a4, N - 1);
+            }
+            return a4;
+        }
         static void Main(string[] args)
         {
             double a1, a2, a3;
