@@ -31,6 +31,55 @@ namespace Practice6
             }
             return a4;
         }
+
+
+        static string temp = "", buf = "";
+        static bool used = false;
+
+        static double max = -1234567890;
+
+        static string AiFuncGrow(double a1, double a2, double a3, int N, string buf)
+        {
+            double a4 = 0;
+            if (N != 0)
+            {
+                a4 = (a3 + a2) / 2 - a1;
+                Console.Write(a4 + " ");
+                if (!used)
+                {
+                    if (a1 < a2)
+                    {
+                        temp += a1.ToString() + " ";
+                        max = a2;
+                    }
+                    else
+                    {
+                        temp += max.ToString() + " ";
+                        used = true;
+                    }
+                }
+                else
+                {
+                    if (a1 < a2)
+                    {
+                        buf += a1.ToString() + " ";
+                        if (a2 > max)
+                        {
+                            temp = buf.ToString();
+                            buf = "";
+                            max = a2;
+                            used = false;
+                        }
+                    }
+                    else
+                        buf = "";
+                }     
+                
+
+                AiFunc(a2, a3, a4, N - 1);
+            }
+            return temp;
+        }
         static void Main(string[] args)
         {
             double a1, a2, a3;
