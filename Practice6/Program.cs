@@ -20,11 +20,12 @@ namespace Practice6
         //Сделать рекурсию
 
         //Строим N новых элементов
-        static string AiFunc(double a1, double a2, double a3, int N, string res = "")
+        static string AiFunc(double a1, double a2, double a3, int N)
         {
+            string res = "";
             double a4 = (a3 + a2) / 2 - a1;
             if (N != 0)
-                res = a4.ToString() + " " + AiFunc(a2, a3, a4, N - 1, res);
+                res = a4.ToString() + " " + AiFunc(a2, a3, a4, N - 1);
              
             return res;
         }
@@ -95,7 +96,8 @@ namespace Practice6
                                                                 // l - левая граница, r - правая граница
                     for (r = i + 1; a[r] > a[r - 1]; r++) ;     // Ищем правую границу
                     i = r;                                      // Сдвигаем указатель
-                    r--;                                        // Уточняем границу (пример: 2 3 1, После прохода, указатель остаётся на 1, надо сдвинуть на элемент влево
+                    r--;                                        // Уточняем границу 
+                                                                //(пример: 2 3 1, После прохода, указатель остаётся на 1, надо сдвинуть на элемент влево)
 
                     if (b[j] < a[r])                            // Сравниваем с последней сохранённой последовательностью
                     {
